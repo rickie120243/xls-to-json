@@ -7,7 +7,7 @@ var mkdirp=require("mkdirp");
 var path=require("path").dirname;
 var list=fs.readdirSync(input);
 
-var xlstojson=function(xlsx) {
+var xlsxtojson=function(xlsx) {
 	var name=xlsx.split(".");
 	var outfn="out/"+name[0];
 	var dir=path(outfn);
