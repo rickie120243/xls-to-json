@@ -1,0 +1,36 @@
+在Excel檔案中
+工具-->巨集-->Visual Basic編輯器 
+
+將Visual Basic編輯器開啟之後在Visual Basic編輯器內 
+插入-->模組 
+
+將以下內容貼到模組內 
+
+Sub 切割活頁簿() 
+source_window_name = ActiveWindow.Caption 
+source_path_name = ActiveWorkbook.Path 
+'先把現在準備分割的原始檔案的視窗名稱及路徑記錄下來 
+target_path = source_path_name & "\" & Left(source_window_name, Len(source_window_name) - 4) 
+MkDir target_path 
+'建立準備儲存切割完成檔案的新資料夾 
+For i = 1 To ActiveWorkbook.Sheets.Count 
+'使用迴圈 , 執行次數是作用中的活頁簿的工作表數量 
+ActiveWorkbook.Sheets(i).Copy 
+'把作用中的活頁簿的第i個工作表複製到另一個新開啟的活頁簿 
+ActiveWorkbook.SaveAs target_path & "\" & ActiveSheet.Name 
+'需注意這裡的ActiveWorkbook已經是新的活頁簿了 
+'把新活頁簿儲存到指定路徑 , 且檔名與工作表名稱相同 
+ActiveWorkbook.Close 
+'關閉已經儲存的新活頁簿 
+Windows(source_window_name).Activate 
+'將作用視窗切換回原始檔案 
+Next 
+End Sub 
+
+
+回到Excel檔案中 
+工具-->巨集-->巨集-->執行(執行剛才貼入的巨集) 
+
+執行完畢之後直接將檔案關閉不需要儲存
+
+資料來源:https://tw.answers.yahoo.com/question/index?qid=20071105000015KK10318
