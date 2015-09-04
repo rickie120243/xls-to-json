@@ -1,4 +1,4 @@
-var input="biography of sutra 3 for json";  // input folder name
+var input="biography of sutra 3";  // input folder name
 
 /////////////////////////////////////////////////////
 var fs=require("fs");
@@ -22,5 +22,4 @@ var xlstojson=function(xls) {
 	  } 
 	});
 } 
-
 list.map(xlstojson);
