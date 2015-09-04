@@ -1,4 +1,4 @@
-var input="biography of sutra 3";  // input folder name
+var input="biography of sutra 3 for json";  // input folder name
 
 /////////////////////////////////////////////////////
 var fs=require("fs");
@@ -7,7 +7,7 @@ var mkdirp=require("mkdirp");
 var path=require("path").dirname;
 var list=fs.readdirSync(input);
 
-var xlstojson=function(xlsx) {
+var xlsxtojson=function(xlsx) {
 	var name=xlsx.split(".");
 	var outfn="out/"+name[0];
 	var dir=path(outfn);
@@ -19,7 +19,15 @@ var xlstojson=function(xlsx) {
 	  
 	  if(err) {
 	    console.error(err);
-	  } 
+	  } else{
+	  	clearjson(result);
+	  }
 	});
 } 
+
+var clearjson=function(m) {
+	m.map(function(arr){
+		console.log(arr.a);
+	})
+}
 list.map(xlsxtojson);
